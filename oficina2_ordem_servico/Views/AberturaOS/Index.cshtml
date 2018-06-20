@@ -1,0 +1,117 @@
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.PagedList<oficina2_ordem_servico.Models.AberturaOSModel>
+
+@{
+    ViewBag.Title = "Ordem de Serviço - Abertura";
+}
+
+<h3>Ordem de Serviço - Abertura</h3>
+
+<p>
+    @Html.ActionLink("Cadastrar novo", "Cadastrar")
+</p>
+
+@using (Html.BeginForm("Index", "AberturaOS", FormMethod.Get))
+{
+    <p>
+        Pesquisar por 
+        <select name="ColunaPesquisa" >
+            <option value="Placa">Placa</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Consultor Usuário">Consultor Usuário</option>
+            <option value="Reclamação">Reclamação</option>
+        </select>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Pesquisar" class="btn" /> @Html.ActionLink("Listar todos", "Index")
+    </p>
+}
+
+    <p>Listando registros de @Model.FirstItemOnPage  a @Model.LastItemOnPage de um total de @Model.TotalItemCount</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Id", "Index", new { sortOrder = "Id", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Numero", "Index", new { sortOrder = "Numero", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Situação", "Index", new { sortOrder = "Situação", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("TipoOS", "Index", new { sortOrder = "TipoOS", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Cliente", "Index", new { sortOrder = "Cliente", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Placa", "Index", new { sortOrder = "Placa", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Quilometragem Entrada", "Index", new { sortOrder = "Quilometragem Entrada", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Consultor Usuário", "Index", new { sortOrder = "Consultor Usuário", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Abertura", "Index", new { sortOrder = "Abertura", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Previsao Entrega", "Index", new { sortOrder = "Previsao Entrega", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Reclamação", "Index", new { sortOrder = "Reclamação", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Situacao.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoOS.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Veiculo.Placa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuilometragemEntrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultorUsuario.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abertura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrevisaoEntrega)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reclamacao)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Deletar", "Deletar", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model,
+                         pagina => Url.Action("Index", new { pagina, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount

@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <!--
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <nav class="navbar navbar-dark bg-dark">
+                    @Html.ActionLink("Ordem de Serviço ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </nav>
+            </div>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cadastrar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/cliente/Cadastrar">Cliente</a>
+                    <a class="dropdown-item" href="/veiculo/Cadastrar">Veiculo</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </div>
+            -->
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Ordem de Serviço ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+
+                @*
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Abertura", "Index", "AberturaOS")</li>
+                            <li>@Html.ActionLink("Execução", "Index", "ExecucaoOS")</li>
+                            <li>@Html.ActionLink("Fechamento", "Index", "FechamentoOS")</li>
+                            <li>@Html.ActionLink("API", "APIOS", "api")</li>
+                        </ul>
+                    </div>
+                *@
+                <div class="navbar-collapse collapse">
+                    <ul class="nav nav-tabs nav-justified">
+                        <li role="presentation" class="active"><a href="~/AberturaOS/Index">Abertura</a></li>
+                        <li role="presentation" class="active"><a href="~/ExecucaoOS/Index">Execução</a></li>
+                        <li role="presentation" class="active"><a href="~/FechamentoOS/Index">Fechamento</a></li>
+                        <li role="presentation" class="active"><a href="~/api/APIOS">API</a></li>
+                        <li role="presentation" class="active"><a style="background-color: #efefef" href="~/Login/Sair">@User.Identity.Name | Sair </a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    }
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    
+    @RenderSection("scripts", false)
+</body>
+</html>

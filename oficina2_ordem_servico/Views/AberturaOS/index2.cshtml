@@ -1,0 +1,107 @@
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.PagedList<oficina2_ordem_servico.Models.AberturaOSModel>
+
+@{
+    ViewBag.Title = "Ordem de Serviço - Abertura";
+}
+
+<h3>Ordem de Serviço - Abertura</h3>
+
+<p>
+    @Html.ActionLink("Cadastrar novo", "Cadastrar")
+</p>
+
+@using (Html.BeginForm("Index2", "AberturaOS", FormMethod.Get))
+{
+<p>
+    Pesquisar pela Placa: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    <input type="submit" value="Pesquisar" class="btn" /> @Html.ActionLink("Listar todos", "Index2")
+</p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Id", "Index2", new { sortOrder = "Id", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Numero", "Index2", new { sortOrder = "Numero", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Situação", "Index2", new { sortOrder = "Situação", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("TipoOS", "Index2", new { sortOrder = "TipoOS", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Cliente", "Index2", new { sortOrder = "Cliente", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Placa", "Index2", new { sortOrder = "Placa", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Quilometragem Entrada", "Index2", new { sortOrder = "Quilometragem Entrada", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Consultor Usuário", "Index2", new { sortOrder = "Consultor Usuário", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Abertura", "Index2", new { sortOrder = "Abertura", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Previsao Entrega", "Index2", new { sortOrder = "Previsao Entrega", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Reclamação", "Index2", new { sortOrder = "Reclamação", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Situacao.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoOS.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Veiculo.Placa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuilometragemEntrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultorUsuario.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abertura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrevisaoEntrega)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reclamacao)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Deletar", "Deletar", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>Listando registros de @Model.FirstItemOnPage  a @Model.LastItemOnPage de um total de @Model.TotalItemCount</p>
+@Html.PagedListPager(Model,
+                         pagina => Url.Action("Index2", new { pagina, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount

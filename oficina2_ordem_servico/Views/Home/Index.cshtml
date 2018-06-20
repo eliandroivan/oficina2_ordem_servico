@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <div class="col-md-12">
+        <p class="text-center"><h2>Oficina2</h2></p>
+    </div>
+    <div class="col-md-12">
+        <p class="text-center"><h3>Ordem de Serviço</h3></p>
+    </div>
+    
+</div>
+<div class="container">
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Fluxo de operação</div>
+            <div class="panel-body">@Html.ActionLink("Abertura", "Index", "AberturaOS")</div>
+            <div class="panel-body">@Html.ActionLink("Execução", "Index", "ExecucaoOS")</div>
+            <div class="panel-body">@Html.ActionLink("Fechamento", "Index", "FechamentoOS")</div>
+            <div class="panel-body">@Html.ActionLink("API", "APIOS", "api")</div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Cadastros</div>
+            <div class="panel-body">@Html.ActionLink("Cliente", "Index", "Cliente")</div>
+            <div class="panel-body">@Html.ActionLink("Consultor usuário", "Index", "ConsultorUsuario")</div>
+            <div class="panel-body">@Html.ActionLink("Veiculo", "Index", "Veiculo")</div>
+            <div class="panel-body">@Html.ActionLink("Marca", "Index", "Marca")</div>
+            <div class="panel-body">@Html.ActionLink("Modelo", "Index", "Modelo")</div>
+            <div class="panel-body">@Html.ActionLink("Cidade", "Index", "Cidade")</div>
+            <div class="panel-body">@Html.ActionLink("Estado", "Index", "Estado")</div>
+            <div class="panel-body">@Html.ActionLink("Tipo da Ordem de servico", "Index", "TipoOS")</div>
+            <div class="panel-body">@Html.ActionLink("Situação", "Index", "Situacao")</div>
+            <div class="panel-body">@Html.ActionLink("Condição de pagamento", "Index", "CondicaoPagamento")</div>
+            <div class="panel-body">@Html.ActionLink("Tipo de Produto", "Index", "TipoProduto")</div>
+            <div class="panel-body">@Html.ActionLink("Produto", "Index", "Produto")</div>
+
+        </div>
+    </div>
+
+</div>
+<hr />
+
+<hr />
+<h4>Login</h4>
+@Html.ActionLink("Login", "Entrar", "Login")
+@Html.ActionLink("Cadastrar usuário", "Cadastrar", "ConsultorUsuario")

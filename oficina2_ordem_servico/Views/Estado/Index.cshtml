@@ -1,0 +1,45 @@
+﻿@model IEnumerable<oficina2_ordem_servico.Models.EstadoModel>
+
+@{
+    ViewBag.Title = "Estado";
+}
+
+<h3>Estado</h3>
+
+<p>
+    @Html.ActionLink("Cadastrar novo", "Cadastrar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sigla)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sigla)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Deletar", "Deletar", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

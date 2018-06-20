@@ -1,0 +1,69 @@
+﻿@model oficina2_ordem_servico.Models.ExecucaoOSModel
+<script src="~/Scripts/Oficina.js"></script>
+
+@* Serializar o formulario apra enviar ao BD *@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+@{
+    ViewBag.Title = "Ordem de Serviço - Execução";
+}
+
+<h3>Ordem de Serviço - Execução</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Cadastrar</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.AberturaOS, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_os", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AberturaOS, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <input type="button" id="addItem" value="Adicionar produto" onclick="insRow()" />
+            <input type="button" id="cancelarOS" value="Cancelar Ordem de serviço" onclick="cancelaOS()" />
+            <button onclick="onSubmit()" class="btn-group">Salvar itens</button>
+            <br />
+            @*<br />
+        <table id="TabelaProdutoItem" border="1">
+                <tr>
+                    <td>Item</td>
+                    <td>Produto</td>
+                    <td>Valor R$</td>
+                    <td>Quantidade</td>
+                    <td>Total do Produto</td>
+                </tr>
+                </table>
+
+
+                
+            *@
+            <table id="TabelaProdutoItem" class="table">
+                <tr>
+                    <th>Item</th>
+                    <th>Produto</th>
+                    <th>Valor R$</th>
+                    <th>Quantidade</th>
+                    <th>Total do Produto</th>
+                </tr>
+            </table>
+        </div>
+
+        
+    </div>
+}
+<br /><br />
+<div>
+    @Html.ActionLink("Voltar para Lista", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

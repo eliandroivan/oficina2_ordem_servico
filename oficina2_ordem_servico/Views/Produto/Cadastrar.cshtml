@@ -1,0 +1,95 @@
+﻿@model oficina2_ordem_servico.Models.ProdutoModel
+<script src="~/Scripts/Oficina.js"></script>
+@{
+    ViewBag.Title = "Produto";
+}
+
+<h3>Produto</h3>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Cadastrar</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.TipoProduto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("id_tipo_produto", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TipoProduto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Referencia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Referencia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Referencia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Unidade, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Unidade, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Unidade, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Quantidade, htmlAttributes: new { @class = "form-control", onchange = "preencheTotal()" })
+            @*
+                @Html.EditorFor(model => model.Quantidade, new { htmlAttributes = new { @class = "form-control" } })
+            *@
+
+            @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ValorUnitario, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ValorUnitario, htmlAttributes: new { @class = "form-control", onchange = "preencheTotal()" })
+            @*
+                @Html.EditorFor(model => model.ValorUnitario, new { htmlAttributes = new { @class = "form-control" } })
+            *@
+            
+            @Html.ValidationMessageFor(model => model.ValorUnitario, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Valor Total", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input name="valor_total" id="valor_total" type="number" class="form-control" readonly />           
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cadastrar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Voltar para Lista", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

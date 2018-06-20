@@ -1,0 +1,87 @@
+﻿@model IEnumerable<oficina2_ordem_servico.Models.VeiculoModel>
+
+@{
+    ViewBag.Title = "Veículo";
+}
+
+<h3>Veículo</h3>
+
+<p>
+    @Html.ActionLink("Cadastrar novo", "Cadastrar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente.CpfCnpj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Placa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chassi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnoFabricacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnoModelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.CpfCnpj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelo.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Placa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Chassi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnoFabricacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnoModelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Deletar", "Deletar", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,143 @@
+﻿@model oficina2_ordem_servico.Models.AberturaOSModel
+<script src="~/Scripts/Oficina.js"></script>
+@{
+    ViewBag.Title = "Ordem de Serviço - Abertura";
+}
+
+<h3>Ordem de Serviço - Abertura</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Cadastrar</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" name="Numero" value="@ViewData["UltimoNumeroOS"]" class="form-control" readonly />
+                    @*
+                        Html.EditorFor(model => model.Numero, new { htmlAttributes = new { class = "form-control", } })
+                    *@
+                    @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.TipoOS, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_tipo_os", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TipoOS, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <div class="form-group">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Cliente, htmlAttributes: new { @class = "control-label" })
+
+                @Html.DropDownList("id_cliente", null, string.Empty, htmlAttributes: new { onchange = "buscarVeiculos()", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cliente, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Veiculo, htmlAttributes: new { @class = "control-label" })
+
+                <select id="id_veiculo" name="id_veiculo" class="form-control"></select>
+                @Html.ValidationMessageFor(model => model.Veiculo, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.QuilometragemEntrada, htmlAttributes: new { @class = "control-label" })
+
+                @Html.EditorFor(model => model.QuilometragemEntrada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuilometragemEntrada, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+    </div>
+
+
+    <hr />
+    <div class="form-group">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Abertura, htmlAttributes: new { @class = "control-label" })
+                <input type="text" class="form-control" name="Abertura" id="Abertura" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" />
+                <!-- Html.EditorFor(model => model.Abertura, new { htmlAttributes = new { class = "form-control" } }) -->
+                @Html.ValidationMessageFor(model => model.Abertura, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.PrevisaoEntrega, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.PrevisaoEntrega, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PrevisaoEntrega, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <hr />
+    <div class="form-group">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.ConsultorUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_consultor_usuario", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ConsultorUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Reclamacao, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Reclamacao, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Reclamacao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/picker/jquery-2.2.4.min.js"></script>
+    <script src="~/Scripts/picker/jquery-ui.min.js"></script>
+    <script src="~/Scripts/picker/jquery.datetimepicker.full.min.js"></script>
+    <script src="~/Scripts/picker/rainbow-custom.min.js"></script>
+
+    <input id="datetimepicker" type="text">
+    <script>
+        $(document).ready(function () {
+            $.datetimepicker.setLocale('pt-BR');
+            $('#datetimepicker').datetimepicker();
+        });
+    </script>
+
+
+
+    <hr />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cadastrar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Voltar para Lista", "Index")
+</div>
+
+
+<!-- <script src="js/jquery.min.js"></script> -->
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+

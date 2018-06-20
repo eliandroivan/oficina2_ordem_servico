@@ -1,0 +1,69 @@
+﻿@model IEnumerable<oficina2_ordem_servico.Models.ExecucaoOSModel>
+
+@{
+    ViewBag.Title = "Ordem de Serviço - Execução";
+}
+
+<h3>Ordem de Serviço - Execução</h3>
+
+<p>
+    @Html.ActionLink("Cadastrar novo", "Cadastrar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AberturaOS.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produto.TipoProduto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produto.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produto.ValorUnitario)
+        </th>
+        <th>
+            @Html.DisplayName("Valor do item")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AberturaOS.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Produto.TipoProduto.TipoProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Produto.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Produto.ValorUnitario)
+        </td>
+        <td>
+            @(item.Quantidade*item.Produto.ValorUnitario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Deletar", "Deletar", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

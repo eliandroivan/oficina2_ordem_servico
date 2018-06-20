@@ -1,0 +1,75 @@
+﻿@model IEnumerable<oficina2_ordem_servico.Models.ProdutoModel>
+
+@{
+    ViewBag.Title = "Produto";
+}
+
+<h3>Produto</h3>
+
+<p>
+    @Html.ActionLink("Cadastrar novo", "Cadastrar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <td>
+            @Html.DisplayNameFor(model => model.TipoProduto)
+        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.Referencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorUnitario)
+        </th>
+        <th>
+            @Html.DisplayName("Valor total")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoProduto.TipoProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Referencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValorUnitario)
+        </td>
+        <td>
+            @(item.Quantidade * item.ValorUnitario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Deletar", "Deletar", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
